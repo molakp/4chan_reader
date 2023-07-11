@@ -16,12 +16,21 @@
         <div class="thread-content">
           <h2>{{ thread.title }}</h2>
           <div class="posts">
+           <!---
             {% for post in thread.posts %}
               <div class="post">
                 <p><strong>{{ post.author }}</strong> - {{ post.date }}</p>
                 <div class="message">{{ post.message }}</div>
               </div>
             {% endfor %}
+          
+          --> 
+          
+              <div class="post">
+                <p><strong>{{ thread.message }}</strong></p>
+                <div class="message">{{ thread.content }}</div>
+              </div>
+            
           </div>
         </div>
       </div>

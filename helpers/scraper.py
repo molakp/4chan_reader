@@ -41,8 +41,10 @@ def get_threads(board_url):
         message =  div.select_one('.postContainer.opContainer .postMessage')
         if message:
             thread['message'] = message.text.strip()
-       
-
+            
+        thread_image = div.select_one('.fileThumb').find('img')['src']
+        if thread_image:
+            thread['image'] = thread_image
 
         threads.append(thread)
 
@@ -51,13 +53,12 @@ def get_threads(board_url):
 
 
 def get_thread_details(board_url, thread_id):
-    thread_url = f'{board_url}/thread/{thread_id}'
+    thread_url = f'https://boards.4chan.org/{board_url}/thread/{thread_id}'
     soup = get_soup(thread_url)
     thread_details = {}
     thread_details['id'] = thread_id
-    
     thread_details['title'] = soup.find('span', class_='subject').get_text(strip=True)
-    post_message_div = soup.find('div', class_='postMessage')
+    post_message_div = soup.find('blockquote', class_='postMessage')
     thread_details['content'] = post_message_div.get_text(strip=True) if post_message_div else ''
     return thread_details
 
