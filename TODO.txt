@@ -1,0 +1,4 @@
+responsive
+immagini 
+layout simile al giornale
+nella home mettere solo il riassunto del thread

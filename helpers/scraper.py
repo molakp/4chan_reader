@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+from helpers.cors import *
 
 def get_soup(url):
     response = requests.get(url)
@@ -44,7 +45,8 @@ def get_threads(board_url):
             
         thread_image = div.select_one('.fileThumb').find('img')['src']
         if thread_image:
-            thread['image'] = thread_image
+            thread['image'] = get_image_from_url("https:" + thread_image) #https://i.4cdn.org/pol/1689142797200819s.jpg
+            #thread['image'] = thread_image
 
         threads.append(thread)
 

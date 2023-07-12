@@ -19,6 +19,7 @@
               <img src="path_to_thread_image" alt="Thread Image" class="thread-image">
               <h2>{{ thread.title }}</h2>
               <p>{{ thread.message }}</p>
+              <img src="data:image/jpeg;base64,{{thread.image }}" alt="Immagine">
               <img src="{{ thread.image }}" class="thread-image" alt="Thread Image">
               <a href="{{ url_for('thread', thread_id=thread.id) }}">Read More</a>
             </div>

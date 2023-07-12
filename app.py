@@ -2,6 +2,8 @@ from flask import Flask, render_template
 from helpers.scraper import *
 
 app = Flask(__name__)
+from flask_cors import CORS
+CORS(app)
 
 
 @app.route('/')
