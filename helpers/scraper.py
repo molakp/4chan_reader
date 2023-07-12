@@ -1,7 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 from helpers.cors import *
-
+from helpers.poe_client import *
+ 
 def get_soup(url):
     response = requests.get(url)
     soup = BeautifulSoup(response.content, 'html.parser')
@@ -21,6 +22,7 @@ def get_threads(board_url):
         link = div.select_one('a[href^="//boards.4chan.org"]')
         if link:
             thread['url'] = link.get('href')
+            
             thread['title'] = link.text.strip()
 
         thumb = div.select_one('.thumb')
@@ -62,5 +64,19 @@ def get_thread_details(board_url, thread_id):
     thread_details['title'] = soup.find('span', class_='subject').get_text(strip=True)
     post_message_div = soup.find('blockquote', class_='postMessage')
     thread_details['content'] = post_message_div.get_text(strip=True) if post_message_div else ''
+    thread_details['thread_url'] = thread_url
+
+    # Find all the blockquote elements with class 'postMessage'
+    blocks = soup.find_all('blockquote', class_='postMessage')
+    conversation = ""
+    # Extract the text content from each blockquote element
+    for block in blocks:
+        text = block.get_text(strip=True)
+        cleaned_text = re.sub(r'[^a-zA-Z0-9\s]', '', text)
+        conversation = conversation + " " + cleaned_text
+
+    
+    thread_details['conversation'] = summarize_text(conversation[:10000])
+
     return thread_details
 

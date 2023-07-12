@@ -7,6 +7,10 @@
   font-family: 'UnifrakturCook', sans-serif;
 }
 
+.title {
+  font-family: 'UnifrakturCook', sans-serif;
+}
+
 /* Layout del giornale */
 .newspaper-layout {
   max-width: 800px;
@@ -14,9 +18,23 @@
   padding: 20px;
 }
 
+@media (max-width: 800px) {
+  .newspaper-layout {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
 .header {
   text-align: center;
   margin-bottom: 20px;
+}
+
+@media (max-width: 800px) {
+  .header {
+    text-align: left;
+  }
 }
 
 .threads {
@@ -29,12 +47,19 @@
   background-color: #f2f2f2;
   padding: 10px;
 }
+
 .thread-image {
   position: absolute;
   top: 0;
   right: 0;
   width: 100px; /* Regola la larghezza dell'immagine */
   height: 100px; /* Regola l'altezza dell'immagine */
+}
+
+@media (max-width: 800px) {
+  .thread-image {
+    display: none;
+  }
 }
 
 /* Visualizzazione del thread */
@@ -44,8 +69,22 @@
   padding: 20px;
 }
 
+@media (max-width: 800px) {
+  .thread-layout {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
 .thread-content {
   margin-top: 20px;
+}
+
+@media (max-width: 800px) {
+  .thread-content {
+    margin-top: 0;
+  }
 }
 
 .posts {
@@ -64,4 +103,16 @@
 
 .post .message {
   margin-top: 10px;
+}
+
+@media (max-width: 800px) {
+  .posts {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 800px) {
+  .post {
+    margin-bottom: 0;
+  }
 }

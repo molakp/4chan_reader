@@ -17,7 +17,7 @@
           {% for thread in threads %}
             <div class="thread">
               <img src="path_to_thread_image" alt="Thread Image" class="thread-image">
-              <h2>{{ thread.title }}</h2>
+              <h2 class="title">{{ thread.title }}</h2>
               <p>{{ thread.message }}</p>
               <img src="data:image/jpeg;base64,{{thread.image }}" alt="Immagine">
               <img src="{{ thread.image }}" class="thread-image" alt="Thread Image">

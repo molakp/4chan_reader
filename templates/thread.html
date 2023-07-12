@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Thread - 4chan Reader</title>
+  <title>Thread - The POL Times</title>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
   <div class="nyt-layout">
     <header>
       <div class="container">
-        <h1>4chan Reader</h1>
+        <h1 class ='title'>The POL Times</h1>
       </div>
     </header>
     <div class="main-content">
       <div class="container">
         <div class="thread-content">
-          <h2>{{ thread.title }}</h2>
+          <h2><a href="{{ thread.thread_url }}" target="_blank">{{ thread.title }}</a></h2>
           <div class="posts">
            <!---
             {% for post in thread.posts %}
@@ -28,7 +28,7 @@
           
               <div class="post">
                 <p><strong>{{ thread.message }}</strong></p>
-                <div class="message">{{ thread.content }}</div>
+                <div class="message">{{ thread.conversation }}</div>
               </div>
             
           </div>
