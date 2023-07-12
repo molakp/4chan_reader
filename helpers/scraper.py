@@ -2,7 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 from helpers.cors import *
 from helpers.poe_client import *
- 
+import re
+
 def get_soup(url):
     response = requests.get(url)
     soup = BeautifulSoup(response.content, 'html.parser')
@@ -72,7 +73,7 @@ def get_thread_details(board_url, thread_id):
     # Extract the text content from each blockquote element
     for block in blocks:
         text = block.get_text(strip=True)
-        cleaned_text = re.sub(r'[^a-zA-Z0-9\s]', '', text)
+        cleaned_text = re.sub(r'[^a-zA-Z\s]|(\d+)', '', text)
         conversation = conversation + " " + cleaned_text
 
     
