@@ -2,6 +2,9 @@
 
 The CHAN Times is a web application that aims to provide a newspaper-like experience by presenting threads from the any board on 4Chan in a visually appealing and organized manner. It offers a user-friendly interface to browse, read, and engage with the threads and their content.
 
+This is still a work in progress, early development project, mainly aimed at learning flask and  having fun!
+
+
 ## Features
 
 - Newspaper-inspired layout and styling to enhance readability and aesthetics.
