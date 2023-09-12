@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-from helpers.cors import *
+from helpers.cors import get_image_from_url
 from helpers.poe_client import *
 import re
 
@@ -74,10 +74,11 @@ def get_thread_details(board_url, thread_id):
     for block in blocks:
         text = block.get_text(strip=True)
         cleaned_text = re.sub(r'[^a-zA-Z\s]|(\d+)', '', text)
-        conversation = conversation + " " + cleaned_text
+        conversation = text #conversation + " " + cleaned_text
 
-    
-    thread_details['conversation'] = summarize_text(conversation[:10000])
+    # HERE SUMMARIZATION OF THREAD
+    thread_details['conversation'] = conversation 
+    #summarize_text(conversation[:10000])
 
     return thread_details
 

@@ -8,7 +8,7 @@
   <div class="nyt-layout">
     <header>
       <div class="container">
-        <h1 class="site-name">The /POL/ Times</h1>
+        <h1 class="site-name">The 4chan Times</h1>
       </div>
     </header>
     <div class="main-content">
@@ -17,7 +17,7 @@
           {% for thread in threads %}
             <div class="thread">
               <img src="path_to_thread_image" alt="Thread Image" class="thread-image">
-              <h2 class="title">{{ thread.title }}</h2>
+              <a href="{{ url_for('thread', thread_id=thread.id) }}"><h2 class="title">{{ thread.title }}</h2></a> 
               <p>{{ thread.message }}</p>
               <img src="data:image/jpeg;base64,{{thread.image }}" alt="Immagine">
               <img src="{{ thread.image }}" class="thread-image" alt="Thread Image">
@@ -29,7 +29,7 @@
     </div>
     <footer>
       <div class="container">
-        <p>&copy; 2023 4chan Reader. All rights reserved.</p>
+        <p>&copy; 2023 4chan Times. All rights reserved.</p>
       </div>
     </footer>
   </div>

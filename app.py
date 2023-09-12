@@ -11,7 +11,7 @@ def index():
     board_name='pol'
     board_url = 'https://boards.4chan.org/' + board_name
     threads = get_threads(board_url)
-    print(threads)  # Stampa la lista dei thread per debug
+    #print(threads)  # Stampa la lista dei thread per debug
     return render_template('index.html', threads=threads)
 
 
@@ -20,7 +20,7 @@ def thread(thread_id):
     # Code to retrieve thread details from thread_id
     # Assume the thread is represented as a Python object with attributes like title, posts, etc.
     thread = get_thread_details('pol',thread_id)
-    print(thread)
+    #print(thread)
     return render_template('thread.html', thread=thread)
 
 
