@@ -67,6 +67,14 @@ def get_thread_details(board_url, thread_id):
     thread_details['content'] = post_message_div.get_text(strip=True) if post_message_div else ''
     thread_details['thread_url'] = thread_url
 
+    thread_image_element = post_message_div.select_one('.fileThumb')
+    if thread_image_element is not None:
+        thread_image = thread_image_element.find('img')['src']
+        thread_details['image'] = get_image_from_url("https:" + thread_image)
+        print("-----------------------------" +  thread_details['image'])
+    else:
+        thread_image = None  # o un valore predefinito a tua scelta
+
     # Find all the blockquote elements with class 'postMessage'
     blocks = soup.find_all('blockquote', class_='postMessage')
     conversation = ""
@@ -95,24 +103,22 @@ def get_thread_details(board_url, thread_id):
             # Estrai le informazioni da ciascun post di risposta e aggiungile all'oggetto reply
             # Ad esempio, puoi estrarre il nome, l'ID, il testo del messaggio, ecc.
             reply['name'] = reply_div.select_one('.name').text.strip()
-            reply['post_id'] = reply_div.select_one('.postNum a').text.strip()
-            br_tags= reply_div.select_one('.postMessage').find_all('br')
-            
-            print(br_tags)
-           
-            text = [tag.next_sibling.strip() for tag in br_tags]
-            reply['message'] = text
-           
+            reply['post_id'] = reply_div.select_one('.postNum a').find_next_sibling('a').text.strip()
+            reply['message']= reply_div.select_one('.postMessage').text.strip()
+            reply_image =''
             #reply_image = div.select_one('.fileThumb').find('img')['src']
-            reply_image_element = div.select_one('.fileThumb')
+            reply_image_element = reply_div.select_one('.fileThumb')
             if reply_image_element is not None:
                 reply_image = reply_image_element.find('img')['src']
                 reply['image'] = get_image_from_url("https:" + reply_image)
+              
             else:
-                reply_image = None  # o un valore predefinito a tua scelta
+                reply['image'] = None  # o un valore predefinito a tua scelta
+            
+            
                 
 
             thread_details['replies'].append(reply)  # Aggiungi la risposta alla lista delle risposte del thread
-            #print(reply)
+            
     return thread_details
 

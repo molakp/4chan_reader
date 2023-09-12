@@ -30,6 +30,8 @@
                 <p><strong>{{ thread.message }}</strong></p>
                 <div class="message">{{ thread.content }}</div>
                 <div class="message">{{ thread.conversation }}</div>
+                <img src="data:image/jpeg;base64,{{thread.image }}" alt="Immagine">
+                <img src="{{ thread.image }}" class="thread-image" alt="Thread Image">
               </div>
             
           </div>
@@ -41,6 +43,10 @@
             <div class="post">
               <p><strong>{{ reply.name }}</strong> - {{ reply.post_id }}</p>
               <div class="message">{{ reply.message }}</div>
+              {% if reply.image %}
+                <img src="data:image/jpeg;base64,{{reply.image }}" alt="Immagine">
+                <img src="{{ reply.image }}" class="thread-image" alt="Thread Image">
+              {% endif %}
             </div>
             {% endfor %}
           </div>
