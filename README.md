@@ -10,6 +10,13 @@ The POL Times is a web application that aims to provide a newspaper-like experie
 - Supports image display within threads.
 - Enables user interaction through comments and replies.
 
+## How To Run
+
+Create a Codespace (tested), or run locally on your machine (not tested):
+
+-  pip install -r requirements.txt
+-  python app.py
+
 ## Technologies Used
 
 - Python
