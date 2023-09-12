@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Thread - The POL Times</title>
+  <title>Thread - The Chan Times</title>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
   <div class="nyt-layout">
     <header>
       <div class="container">
-        <h1 class ='title'>The POL Times</h1>
+        <h1 class ='title'>The Chan Times</h1>
       </div>
     </header>
     <div class="main-content">
@@ -33,6 +33,19 @@
               </div>
             
           </div>
+          <!-- Aggiungi il codice per visualizzare le risposte -->
+          {% if thread.replies %}
+          <div class="replies">
+            <h3>Risposte:</h3>
+            {% for reply in thread.replies %}
+            <div class="post">
+              <p><strong>{{ reply.name }}</strong> - {{ reply.post_id }}</p>
+              <div class="message">{{ reply.message }}</div>
+            </div>
+            {% endfor %}
+          </div>
+          {% endif %}
+          <!-- Fine codice per visualizzare le risposte -->
         </div>
       </div>
     </div>

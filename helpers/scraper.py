@@ -79,6 +79,40 @@ def get_thread_details(board_url, thread_id):
     # HERE SUMMARIZATION OF THREAD
     thread_details['conversation'] = conversation 
     #summarize_text(conversation[:10000])
+    # Definisci replies_divs come una lista vuota all'inizio
+    replies_divs = []
+    for div in soup.select("div.postContainer.replyContainer"):
+        # Codice per ottenere le risposte ai thread
+        # Codice per ottenere le risposte ai thread
+        replies_divs.extend(div.select('.post.reply'))  # Aggiungi le risposte trovate alla lista
 
+
+    if replies_divs:
+        thread_details['replies'] = []  # Crea una lista per memorizzare le risposte
+
+        for reply_div in replies_divs:
+            reply = {}
+            # Estrai le informazioni da ciascun post di risposta e aggiungile all'oggetto reply
+            # Ad esempio, puoi estrarre il nome, l'ID, il testo del messaggio, ecc.
+            reply['name'] = reply_div.select_one('.name').text.strip()
+            reply['post_id'] = reply_div.select_one('.postNum a').text.strip()
+            br_tags= reply_div.select_one('.postMessage').find_all('br')
+            
+            print(br_tags)
+           
+            text = [tag.next_sibling.strip() for tag in br_tags]
+            reply['message'] = text
+           
+            #reply_image = div.select_one('.fileThumb').find('img')['src']
+            reply_image_element = div.select_one('.fileThumb')
+            if reply_image_element is not None:
+                reply_image = reply_image_element.find('img')['src']
+                reply['image'] = get_image_from_url("https:" + reply_image)
+            else:
+                reply_image = None  # o un valore predefinito a tua scelta
+                
+
+            thread_details['replies'].append(reply)  # Aggiungi la risposta alla lista delle risposte del thread
+            #print(reply)
     return thread_details
 

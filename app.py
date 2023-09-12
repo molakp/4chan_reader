@@ -20,7 +20,7 @@ def thread(thread_id):
     # Code to retrieve thread details from thread_id
     # Assume the thread is represented as a Python object with attributes like title, posts, etc.
     thread = get_thread_details('pol',thread_id)
-    #print(thread)
+    print(thread['replies'])
     return render_template('thread.html', thread=thread)
 
 

@@ -6,7 +6,7 @@ import base64
 
 def get_image_from_url(url):
     # Esegui la richiesta HTTP utilizzando il server proxy o l'applicazione backend
-    print("AAAAHAHHAHAHA + " + url)
+    
     response = requests.get(url)
     try:
         if response.status_code == 200:
@@ -22,6 +22,7 @@ def get_image_from_url(url):
             #print("Image Data: " + image_base64)
 
             return image_base64
+        
         elif response.status_code == 404:
                 print(f"L'immagine all'URL {url} non è stata trovata.")
     
